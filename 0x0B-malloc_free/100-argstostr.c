@@ -25,7 +25,7 @@ char *argstostr(int ac, char **av)
         len++; /* Account for space for newline character */
     }
 
-    str = malloc(sizeof(char) * len);
+    str = malloc(sizeof(char) * (len + 1)); /* Add space for null terminator */
     if (str == NULL)
         return (NULL);
 
