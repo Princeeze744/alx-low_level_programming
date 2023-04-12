@@ -1,45 +1,42 @@
-#include "holberton.h"
+#include "main.h"
 #include <stdlib.h>
 
 /**
- * argstostr - concatenates all the arguments of a program
- * @ac: argument count
- * @av: argument vector
+ * argstostr - Concatenates all the arguments in argv into a single string
  *
- * Return: pointer to the new string, or NULL if it fails
+ * @ac: Number of arguments in argv
+ * @av: Array of arguments
+ *
+ * Return: A pointer to the concatenated string, or NULL on failure
  */
 char *argstostr(int ac, char **av)
 {
-        char *str;
-        int i, j, k = 0, len = 0;
+    int i, j, len = 0;
+    char *str;
 
-        if (ac == 0 || av == NULL)
-                return (NULL);
+    if (ac == 0 || av == NULL)
+        return (NULL);
 
-        for (i = 0; i < ac; i++)
-        {
-                for (j = 0; av[i][j] != '\0'; j++)
-                        len++;
-                len++;
-        }
+    /* Calculate the total length of the concatenated string */
+    for (i = 0; i < ac; i++)
+    {
+        for (j = 0; av[i][j] != '\0'; j++)
+            len++;
+        len++; /* Account for space for newline character */
+    }
 
-        str = malloc(sizeof(char) * (len + 1));
+    str = malloc(sizeof(char) * (len + 1)); /* Add space for null terminator */
+    if (str == NULL)
+        return (NULL);
 
-        if (str == NULL)
-                return (NULL);
+    /* Copy each argument into the concatenated string */
+    for (i = 0, len = 0; i < ac; i++)
+    {
+        for (j = 0; av[i][j] != '\0'; j++)
+            str[len++] = av[i][j];
+        str[len++] = '\n'; /* Add newline character */
+    }
+    str[len] = '\0'; /* Add null terminator */
 
-        for (i = 0; i < ac; i++)
-        {
-                for (j = 0; av[i][j] != '\0'; j++)
-                {
-                        str[k] = av[i][j];
-                        k++;
-                }
-                str[k] = '\n';
-                k++;
-        }
-
-        str[k] = '\0';
-
-        return (str);
+    return (str);
 }
