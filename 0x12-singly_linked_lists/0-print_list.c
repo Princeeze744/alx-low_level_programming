@@ -19,6 +19,13 @@ typedef struct list_s
         struct list_s *next;
 } list_t;
 
+/**
+ * print_list - Prints all the elements of a list_t list.
+ *
+ * @h: Pointer to the head of the list_t list.
+ *
+ * Return: The number of nodes in the list_t list.
+ */
 size_t print_list(list_t *h);
 
 #endif /* LISTS_H */
