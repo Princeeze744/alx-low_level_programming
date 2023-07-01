@@ -20,8 +20,8 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int num)
 
 	if (!(*head))
 	{
-		*head = new;
-		return (new);
+		*head = new_node;
+		return (new_node);
 	}
 
 	curr = *head;
